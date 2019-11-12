@@ -1,5 +1,6 @@
 package com.revature.eval;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,11 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String text ="";
+		for (int i=string.length(); i>0;i--) {
+			text = text + string.charAt(i-1);
+		}
+		return text;
 	}
 
 	
@@ -28,7 +33,16 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String acronym = "";
+		acronym += phrase.toUpperCase().charAt(0);
+
+        for (int i = 1; i <= phrase.length() - 1; i++) {
+            if (phrase.charAt(i - 1) == ' ' || phrase.charAt(i - 1) == '-') {
+                acronym += phrase.toUpperCase().charAt(i);
+            }
+        }
+		
+		return acronym;
 	}
 	
 	
@@ -49,7 +63,35 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		int score = 0;
+		for (int i = 0; i < string.length(); i++) {
+			string = string.toUpperCase();
+			char ph = string.charAt(i);
+			if(ph == 'A' || ph == 'E' || ph == 'I' || ph == 'O' || ph == 'U' || ph == 'L' || ph == 'N' || ph == 'R' || ph == 'S' || ph ==  'T' ){
+				score = score +1;
+ 			}
+			else if (ph == 'D' || ph == 'G') {
+				score = score +2;
+			}
+			else if (ph == 'B' || ph == 'C' || ph == 'M' || ph == 'P') {
+				score = score + 3;
+			}
+			else if (ph == 'F' || ph == 'H' || ph == 'V' || ph ==  'W' || ph == 'Y' ) {
+				score = score + 4;
+			}
+			else if (ph ==  'K') {
+				score = score + 5;
+			}
+			else if (ph == 'J' || ph == 'X') {
+				score = score + 8;
+			}
+			else if (ph == 'Q' || ph == 'Z') {
+				score = score + 10;
+			}
+		}
+		
+		return score;
 	}
 	
 	
@@ -64,7 +106,17 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> words = new HashMap<String,Integer>();
+		for (String i : string.split(" ")) {
+			if (!words.containsKey(i)) { 
+			      words.put(i, 1);
+			    }
+		    else {
+		      int count = words.get(i);
+		      words.put(i, count + 1);
+		    }
+		}
+		return words;
 	}
 	
 	/**
@@ -102,9 +154,9 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> {
+	static class BinarySearch<T>{
 		private List<T> sortedList;
-
+		
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
 			return 0;
