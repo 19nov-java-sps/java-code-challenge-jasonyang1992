@@ -16,6 +16,11 @@ public class EvaluationService {
 	public String reverse(String string) {
 		// TODO Write an implementation for this method declaration
 		String text ="";
+		
+		if (string == null) {
+			return null;
+		}
+		
 		for (int i=string.length(); i>0;i--) {
 			text = text + string.charAt(i-1);
 		}
@@ -35,12 +40,14 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		String acronym = "";
 		acronym += phrase.toUpperCase().charAt(0);
-
+		
         for (int i = 1; i <= phrase.length() - 1; i++) {
             if (phrase.charAt(i - 1) == ' ' || phrase.charAt(i - 1) == '-') {
                 acronym += phrase.toUpperCase().charAt(i);
             }
         }
+        
+        
 		
 		return acronym;
 	}
@@ -159,7 +166,20 @@ public class EvaluationService {
 		
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
-			return 0;
+			int index = getSortedList().size() / 2;
+
+			while (sortedList.indexOf(t) != index) { 
+				if (sortedList.indexOf(t) > index) {
+					index++;
+				} 
+				else if (sortedList.indexOf(t) < index) {
+					index--;
+				} else {
+					return index;
+				}
+			}
+			
+			return index;
 		}
 
 		public BinarySearch(List<T> sortedList) {
